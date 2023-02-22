@@ -41,34 +41,92 @@ export function ExtraSmall() {
   );
 }
 
-export function Square() {
-  return <Avatar name="Shop One" shape="square" />;
-}
-
 export function ExternalImage() {
   return (
     <Avatar
       name="External image"
       shape="square"
-      source="https://picsum.photos/200"
+      source="https://i.picsum.photos/id/696/200/200.jpg?hmac=JE4lFckorKxM41-eM1nTxXjpOeCf3aZkAxrLl3ZAYI0"
     />
+  );
+}
+
+export function Square() {
+  return <Avatar name="Shop One" shape="square" />;
+}
+
+export function SquareWithInitials() {
+  return (
+    <Stack vertical>
+      <Stack.Item>
+        <Avatar
+          shape="square"
+          initials="OE"
+          name="Oluwayemisi Eun-Jung"
+          size="extraSmall"
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar
+          shape="square"
+          initials="OE"
+          name="Oluwayemisi Eun-Jung"
+          size="small"
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar
+          shape="square"
+          initials="OE"
+          name="Oluwayemisi Eun-Jung"
+          size="medium"
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar
+          shape="square"
+          initials="OE"
+          name="Oluwayemisi Eun-Jung"
+          size="large"
+        />
+      </Stack.Item>
+    </Stack>
   );
 }
 
 export function Sizes() {
   return (
-    <Stack>
+    <Stack vertical>
       <Stack.Item>
-        <Avatar customer name="Farrah" size="extraSmall" />
+        <Avatar name="Farrah" size="extraSmall" />
       </Stack.Item>
       <Stack.Item>
-        <Avatar customer name="Farrah" size="small" />
+        <Avatar name="Farrah" size="small" />
       </Stack.Item>
       <Stack.Item>
-        <Avatar customer name="Farrah" size="medium" />
+        <Avatar name="Farrah" size="medium" />
       </Stack.Item>
       <Stack.Item>
-        <Avatar customer name="Farrah" size="large" />
+        <Avatar name="Farrah" size="large" />
+      </Stack.Item>
+    </Stack>
+  );
+}
+
+export function SizesWithInitials() {
+  return (
+    <Stack vertical>
+      <Stack.Item>
+        <Avatar initials="OE" name="Oluwayemisi Eun-Jung" size="extraSmall" />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar initials="OE" name="Oluwayemisi Eun-Jung" size="small" />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar initials="OE" name="Oluwayemisi Eun-Jung" size="medium" />
+      </Stack.Item>
+      <Stack.Item>
+        <Avatar initials="OE" name="Oluwayemisi Eun-Jung" size="large" />
       </Stack.Item>
     </Stack>
   );

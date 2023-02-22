@@ -5,15 +5,13 @@ import {
   Listbox,
   Page,
   Sheet,
-  Heading,
   Scrollable,
-  TextStyle,
-  Subheading,
   AutoSelection,
   Icon,
   Button,
   EmptySearchResult,
   TextContainer,
+  Text,
 } from '@shopify/polaris';
 import {MobileCancelMajor, SearchMinor} from '@shopify/polaris-icons';
 
@@ -196,7 +194,7 @@ function SheetWithSearchableListboxExample() {
       style={{
         padding: 'var(--p-space-4) var(--p-space-2)',
         position: 'sticky',
-        zIndex: 'var(--p-z-12)',
+        zIndex: 'var(--p-z-index-12)',
         width: '100%',
         background: 'var(--p-surface)',
       }}
@@ -319,9 +317,9 @@ function SheetWithSearchableListboxExample() {
                 marginBottom: 'var(--p-space-2)',
               }}
             >
-              <TextStyle variation="subdued">
-                <Subheading>Action</Subheading>
-              </TextStyle>
+              <Text variant="headingXs" as="h3" color="subdued">
+                Action
+              </Text>
               <Button
                 accessibilityLabel="Cancel"
                 icon={MobileCancelMajor}
@@ -330,10 +328,12 @@ function SheetWithSearchableListboxExample() {
               />
             </div>
             <TextContainer>
-              <Heading>Look up customer segmentation membership</Heading>
-              <TextStyle variation="subdued">
+              <Text variant="headingMd" as="h2">
+                Look up customer segmentation membership
+              </Text>
+              <Text variant="bodyMd" color="subdued" as="span">
                 Look up whether a customer is included in a segment.
-              </TextStyle>
+              </Text>
             </TextContainer>
           </div>
           <div

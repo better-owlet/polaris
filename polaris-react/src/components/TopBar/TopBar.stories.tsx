@@ -1,12 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import type {ComponentMeta} from '@storybook/react';
-import {
-  ActionList,
-  Frame,
-  Icon,
-  TopBar,
-  VisuallyHidden,
-} from '@shopify/polaris';
+import {ActionList, Frame, Icon, TopBar, Text} from '@shopify/polaris';
 import {ArrowLeftMinor, QuestionMarkMajor} from '@shopify/polaris-icons';
 
 export default {
@@ -47,7 +41,7 @@ export function Default() {
     width: 124,
     topBarSource:
       'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999',
-    url: 'http://jadedpixel.com',
+    url: '#',
     accessibilityLabel: 'Jaded Pixel',
   };
 
@@ -89,7 +83,9 @@ export function Default() {
       activatorContent={
         <span>
           <Icon source={QuestionMarkMajor} />
-          <VisuallyHidden>Secondary menu</VisuallyHidden>
+          <Text variant="bodySm" as="span" visuallyHidden>
+            Secondary menu
+          </Text>
         </span>
       }
       open={isSecondaryMenuOpen}

@@ -51,23 +51,23 @@ We've created a collection of Sass variables for applying responsive styles at e
 
 ```scss
 $p-breakpoints-xs-up: '(min-width: 0em)';
-$p-breakpoints-xs-down: '(max-width: -0.003125em)';
-$p-breakpoints-xs-only: '(min-width: 0em) and (max-width: 30.621875em)';
+$p-breakpoints-xs-down: '(max-width: -0.0025em)';
+$p-breakpoints-xs-only: '(min-width: 0em) and (max-width: 30.6225em)';
 
 $p-breakpoints-sm-up: '(min-width: 30.625em)';
-$p-breakpoints-sm-down: '(max-width: 30.621875em)';
-$p-breakpoints-sm-only: '(min-width: 30.625em) and (max-width: 47.996875em)';
+$p-breakpoints-sm-down: '(max-width: 30.6225em)';
+$p-breakpoints-sm-only: '(min-width: 30.625em) and (max-width: 47.9975em)';
 
 $p-breakpoints-md-up: '(min-width: 48em)';
-$p-breakpoints-md-down: '(max-width: 47.996875em)';
-$p-breakpoints-md-only: '(min-width: 48em) and (max-width: 64.996875em)';
+$p-breakpoints-md-down: '(max-width: 47.9975em)';
+$p-breakpoints-md-only: '(min-width: 48em) and (max-width: 64.9975em)';
 
 $p-breakpoints-lg-up: '(min-width: 65em)';
-$p-breakpoints-lg-down: '(max-width: 64.996875em)';
-$p-breakpoints-lg-only: '(min-width: 65em) and (max-width: 89.996875em)';
+$p-breakpoints-lg-down: '(max-width: 64.9975em)';
+$p-breakpoints-lg-only: '(min-width: 65em) and (max-width: 89.9975em)';
 
 $p-breakpoints-xl-up: '(min-width: 90em)';
-$p-breakpoints-xl-down: '(max-width: 89.996875em)';
+$p-breakpoints-xl-down: '(max-width: 89.9975em)';
 $p-breakpoints-xl-only: '(min-width: 90em)';
 ```
 
@@ -77,11 +77,11 @@ The following Sass mixins have been removed. You will need to replace any instan
 
 | Before                                                 | After                              |
 | ------------------------------------------------------ | ---------------------------------- |
-| `@include page-content-when-partially-condensed()`     | `@media #{$p-breakpoints-md-down}` |
+| `@include page-content-when-partially-condensed()`     | `@media #{$p-breakpoints-lg-down}` |
 | `@include page-content-when-not-partially-condensed()` | `@media #{$p-breakpoints-md-up}`   |
 | `@include page-content-when-fully-condensed()`         | `@media #{$p-breakpoints-sm-down}` |
 | `@include page-content-when-not-fully-condensed()`     | `@media #{$p-breakpoints-sm-up}`   |
-| `@include page-content-when-layout-stacked()`          | `@media #{$p-breakpoints-md-down}` |
+| `@include page-content-when-layout-stacked()`          | `@media #{$p-breakpoints-lg-down}` |
 | `@include page-content-when-layout-not-stacked()`      | `@media #{$p-breakpoints-md-up}`   |
 | `@include page-before-resource-list-small()`           | `@media #{$p-breakpoints-sm-down}` |
 | `@include page-after-resource-list-small()`            | `@media #{$p-breakpoints-sm-up}`   |
@@ -90,7 +90,7 @@ The following Sass mixins have been removed. You will need to replace any instan
 | `@include when-typography-not-condensed()`             | `@media #{$p-breakpoints-md-up}`   |
 | `@include frame-when-nav-hidden()`                     | `@media #{$p-breakpoints-md-down}` |
 | `@include frame-when-nav-displayed()`                  | `@media #{$p-breakpoints-md-up}`   |
-| `@include frame-with-nav-when-not-max-width()`         | `@media #{$p-breakpoints-xl-down}` |
+| `@include frame-with-nav-when-not-max-width()`         | `@media #{$p-breakpoints-lg-down}` |
 | `@include after-topbar-sheet()`                        | `@media #{$p-breakpoints-sm-up}`   |
 
 ### Sass dynamic mixins
@@ -114,10 +114,10 @@ Use the following [tool](https://stackblitz.com/edit/node-cbofkd?file=README.md)
 
 <details>
   <summary><code>@include page-content-breakpoint-before(400px)</code></summary>
-  
-  Example input:
-  <br>
-  <img width="449" alt="Screen Shot 2022-08-23 at 3 38 11 PM" src="https://user-images.githubusercontent.com/32409546/186279553-98a4f0c2-3616-48f7-8851-61f015d53bee.png">
+
+Example input:
+<br>
+<img width="449" alt="Screen Shot 2022-08-23 at 3 38 11 PM" src="https://user-images.githubusercontent.com/32409546/186279553-98a4f0c2-3616-48f7-8851-61f015d53bee.png">
 
 Example output:
 <br>
@@ -131,9 +131,9 @@ Example output:
 
 <details>
   <summary><code>@include page-content-breakpoint-after(400px)</code></summary>
-  
-  Example input:
-  <br>
+
+Example input:
+<br>
 <img width="449" alt="Screen Shot 2022-08-23 at 3 37 59 PM" src="https://user-images.githubusercontent.com/32409546/186280245-5bd873fe-9139-4d73-81c4-31619209ab7d.png">
 
 Example output:

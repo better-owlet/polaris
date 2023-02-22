@@ -52,6 +52,7 @@ export interface SearchResult {
       title: string;
       description: string;
       status?: Status;
+      group?: string;
     };
     foundations: {
       title: string;
@@ -105,17 +106,6 @@ export type Status = {
   message: string;
 };
 
-export interface PropsForComponent {
-  interfaceName: string;
-  props: {
-    name: string;
-    type: string;
-    comment?: string;
-    optional: boolean;
-    deprecated: boolean;
-  }[];
-}
-
 export interface QuickGuideRow {
   question: string;
   answer: string;
@@ -125,4 +115,46 @@ export interface QuickGuide {
   title: string;
   queryParam: string;
   rows: QuickGuideRow[];
+}
+
+export type AllTypes = {
+  [typeName: string]: {
+    [filePath: string]: Type;
+  };
+};
+
+export type FilteredTypes = {
+  [typeName: string]: Type;
+};
+
+export type Type = {
+  filePath: string;
+  name: string;
+  value: string | number | object;
+  syntaxKind?: string;
+  description?: string;
+  isOptional?: true;
+  deprecationMessage?: string;
+  defaultValue?: string;
+  members?: Type[];
+};
+
+export interface NavJSON {
+  children?: {
+    [key: string]: NavItem;
+  };
+}
+
+export interface NavItem {
+  title?: string;
+  description?: string;
+  slug?: string;
+  order?: number;
+  icon?: string;
+  color?: string;
+  hideChildren?: false;
+  newSection?: true;
+  status?: Status;
+  children?: NavJSON;
+  expanded?: boolean;
 }

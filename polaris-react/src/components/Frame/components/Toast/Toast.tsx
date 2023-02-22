@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
-import {MobileCancelMajor} from '@shopify/polaris-icons';
+import {CancelSmallMinor, AlertMinor} from '@shopify/polaris-icons';
 
 import {classNames} from '../../../../utilities/css';
 import {Key} from '../../../../types';
 import {Button} from '../../../Button';
 import {Icon} from '../../../Icon';
+import {Inline} from '../../../Inline';
+import {Text} from '../../../Text';
 import {KeypressListener} from '../../../KeypressListener';
 import type {ToastProps} from '../../../../utilities/frame';
 
@@ -48,15 +50,21 @@ export function Toast({
 
   const dismissMarkup = (
     <button type="button" className={styles.CloseButton} onClick={onDismiss}>
-      <Icon source={MobileCancelMajor} />
+      <Icon source={CancelSmallMinor} />
     </button>
   );
 
   const actionMarkup = action ? (
     <div className={styles.Action}>
-      <Button plain monochrome onClick={action.onAction}>
+      <Button plain monochrome size="slim" onClick={action.onAction}>
         {action.content}
       </Button>
+    </div>
+  ) : null;
+
+  const leadingIconMarkup = error ? (
+    <div className={styles.LeadingIcon}>
+      <Icon source={AlertMinor} color="base" />
     </div>
   ) : null;
 
@@ -65,7 +73,12 @@ export function Toast({
   return (
     <div className={className}>
       <KeypressListener keyCode={Key.Escape} handler={onDismiss} />
-      {content}
+      {leadingIconMarkup}
+      <Inline blockAlign="center">
+        <Text as="span" variant="bodyMd" fontWeight="medium">
+          {content}
+        </Text>
+      </Inline>
       {actionMarkup}
       {dismissMarkup}
     </div>

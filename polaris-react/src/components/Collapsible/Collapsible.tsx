@@ -18,10 +18,14 @@ export interface CollapsibleProps {
   expandOnPrint?: boolean;
   /** Toggle whether the collapsible is expanded or not. */
   open: boolean;
-  /** Assign transition properties to the collapsible */
-  transition?: Transition;
-  /** Prevents component from re-measuring when child is updated **/
+  /** Override transition properties. When set to false, disables transition completely.
+   * @default transition={{duration: 'var(--p-duration-150)', timingFunction: 'var(--p-ease-in-out)'}}
+   */
+  transition?: boolean | Transition;
+  /** @deprecated Re-measuring is no longer necessary on children update **/
   preventMeasuringOnChildrenUpdate?: boolean;
+  /** Callback when the animation completes. */
+  onAnimationEnd?(): void;
   /** The content to display inside the collapsible. */
   children?: React.ReactNode;
 }
@@ -32,9 +36,10 @@ export function Collapsible({
   id,
   expandOnPrint,
   open,
-  transition,
-  preventMeasuringOnChildrenUpdate,
+  transition = true,
+  preventMeasuringOnChildrenUpdate: _preventMeasuringOnChildrenUpdate,
   children,
+  onAnimationEnd,
 }: CollapsibleProps) {
   const [height, setHeight] = useState(0);
   const [isOpen, setIsOpen] = useState(open);
@@ -51,11 +56,15 @@ export function Collapsible({
     expandOnPrint && styles.expandOnPrint,
   );
 
+  const transitionDisabled = isTransitionDisabled(transition);
+
+  const transitionStyles = typeof transition === 'object' && {
+    transitionDuration: transition.duration,
+    transitionTimingFunction: transition.timingFunction,
+  };
+
   const collapsibleStyles = {
-    ...(transition && {
-      transitionDuration: `${transition.duration}`,
-      transitionTimingFunction: `${transition.timingFunction}`,
-    }),
+    ...transitionStyles,
     ...{
       maxHeight: isFullyOpen ? 'none' : `${height}px`,
       overflow: isFullyOpen ? 'visible' : 'hidden',
@@ -67,20 +76,33 @@ export function Collapsible({
       if (target === collapsibleContainer.current) {
         setAnimationState('idle');
         setIsOpen(open);
+        onAnimationEnd && onAnimationEnd();
       }
     },
-    [open],
+    [onAnimationEnd, open],
   );
 
-  useEffect(() => {
-    if (isFullyClosed || preventMeasuringOnChildrenUpdate) return;
-    setAnimationState('measuring');
-  }, [children, isFullyClosed, preventMeasuringOnChildrenUpdate]);
+  const startAnimation = useCallback(() => {
+    if (transitionDisabled) {
+      setIsOpen(open);
+      setAnimationState('idle');
+
+      if (open && collapsibleContainer.current) {
+        setHeight(collapsibleContainer.current.scrollHeight);
+      } else {
+        setHeight(0);
+      }
+    } else {
+      setAnimationState('measuring');
+    }
+  }, [open, transitionDisabled]);
 
   useEffect(() => {
     if (open !== isOpen) {
-      setAnimationState('measuring');
+      startAnimation();
     }
+    // startAnimation should only be fired if the open state changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, isOpen]);
 
   useEffect(() => {
@@ -117,4 +139,18 @@ export function Collapsible({
       {content}
     </div>
   );
+}
+
+const zeroDurationRegex = /^0(ms|s)$/;
+
+function isTransitionDisabled(transitionProp: Transition | boolean) {
+  if (typeof transitionProp === 'boolean') {
+    return !transitionProp;
+  }
+
+  const {duration} = transitionProp;
+  if (duration && zeroDurationRegex.test(duration.trim())) {
+    return true;
+  }
+  return false;
 }

@@ -1,4 +1,33 @@
-export const spacing = {
+import type {MetadataProperties} from '../types';
+
+export type SpacingSpaceScale =
+  | '0'
+  | '025'
+  | '05'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '8'
+  | '10'
+  | '12'
+  | '16'
+  | '20'
+  | '24'
+  | '28'
+  | '32';
+
+export type SpacingTokenName = `space-${SpacingSpaceScale}`;
+
+export type SpacingTokenGroup = {
+  [TokenName in SpacingTokenName]: string;
+};
+
+export const spacing: {
+  [TokenName in SpacingTokenName]: MetadataProperties;
+} = {
   'space-0': {
     value: '0',
   },

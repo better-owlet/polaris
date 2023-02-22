@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, SetStateAction, Dispatch} from 'react';
 import {Transition, CSSTransition} from 'react-transition-group';
 import {motion} from '@shopify/polaris-tokens';
 
@@ -9,6 +9,8 @@ import {KeypressListener} from '../../../KeypressListener';
 import {TrapFocus} from '../../../TrapFocus';
 
 import styles from './Dialog.scss';
+
+type CSSTransitionProps = React.ComponentProps<typeof CSSTransition>;
 
 export interface DialogProps {
   labelledBy?: string;
@@ -22,6 +24,7 @@ export interface DialogProps {
   onExited?(): void;
   in?: boolean;
   fullScreen?: boolean;
+  setClosing?: Dispatch<SetStateAction<boolean>>;
 }
 
 export function Dialog({
@@ -35,6 +38,7 @@ export function Dialog({
   small,
   limitHeight,
   fullScreen,
+  setClosing,
   ...props
 }: DialogProps) {
   const containerNode = useRef<HTMLDivElement>(null);
@@ -52,6 +56,19 @@ export function Dialog({
       !containerNode.current.contains(document.activeElement) &&
       focusFirstFocusableNode(containerNode.current);
   }, []);
+
+  const handleKeyDown = () => {
+    if (setClosing) {
+      setClosing(true);
+    }
+  };
+
+  const handleKeyUp = () => {
+    if (setClosing) {
+      setClosing(false);
+    }
+    onClose();
+  };
 
   return (
     <TransitionChild
@@ -73,12 +90,18 @@ export function Dialog({
           <div
             role="dialog"
             aria-modal
+            aria-label={labelledBy}
             aria-labelledby={labelledBy}
             tabIndex={-1}
             className={styles.Dialog}
           >
             <div className={classes}>
-              <KeypressListener keyCode={Key.Escape} handler={onClose} />
+              <KeypressListener
+                keyCode={Key.Escape}
+                keyEvent="keydown"
+                handler={handleKeyDown}
+              />
+              <KeypressListener keyCode={Key.Escape} handler={handleKeyUp} />
               {children}
             </div>
           </div>
@@ -97,7 +120,7 @@ const fadeUpClasses = {
   exitActive: classNames(styles.animateFadeUp, styles.exited),
 };
 
-function FadeUp({children, ...props}: any) {
+function FadeUp({children, ...props}: CSSTransitionProps) {
   return (
     <CSSTransition {...props} classNames={fadeUpClasses}>
       {children}

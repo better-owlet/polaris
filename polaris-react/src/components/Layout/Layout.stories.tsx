@@ -4,13 +4,12 @@ import {
   Banner,
   Card,
   FormLayout,
-  Heading,
+  Text,
   Layout,
   Page,
   ResourceList,
   TextContainer,
   TextField,
-  TextStyle,
   Thumbnail,
 } from '@shopify/polaris';
 
@@ -63,7 +62,9 @@ export function TwoColumnsWithEqualWidth() {
         <Layout.Section oneHalf>
           <Card title="Florida" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">455 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                455 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -71,7 +72,7 @@ export function TwoColumnsWithEqualWidth() {
                 items={[
                   {
                     id: '341',
-                    url: 'produdcts/341',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '254',
@@ -84,7 +85,7 @@ export function TwoColumnsWithEqualWidth() {
                   },
                   {
                     id: '256',
-                    url: 'produdcts/256',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -107,7 +108,9 @@ export function TwoColumnsWithEqualWidth() {
                       accessibilityLabel={`View details for ${name}`}
                     >
                       <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
+                        <Text variant="bodyMd" fontWeight="bold" as="span">
+                          {name}
+                        </Text>
                       </h3>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
@@ -121,7 +124,9 @@ export function TwoColumnsWithEqualWidth() {
         <Layout.Section oneHalf>
           <Card title="Nevada" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">301 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                301 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -129,7 +134,7 @@ export function TwoColumnsWithEqualWidth() {
                 items={[
                   {
                     id: '342',
-                    url: 'produdcts/342',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '100',
@@ -142,7 +147,7 @@ export function TwoColumnsWithEqualWidth() {
                   },
                   {
                     id: '257',
-                    url: 'produdcts/257',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -165,7 +170,9 @@ export function TwoColumnsWithEqualWidth() {
                       accessibilityLabel={`View details for ${name}`}
                     >
                       <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
+                        <Text variant="bodyMd" fontWeight="bold" as="span">
+                          {name}
+                        </Text>
                       </h3>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
@@ -188,7 +195,9 @@ export function ThreeColumnsWithEqualWidth() {
         <Layout.Section oneThird>
           <Card title="Florida" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">455 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                455 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -196,7 +205,7 @@ export function ThreeColumnsWithEqualWidth() {
                 items={[
                   {
                     id: '343',
-                    url: 'produdcts/343',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '254',
@@ -209,7 +218,7 @@ export function ThreeColumnsWithEqualWidth() {
                   },
                   {
                     id: '258',
-                    url: 'produdcts/258',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -232,7 +241,9 @@ export function ThreeColumnsWithEqualWidth() {
                       accessibilityLabel={`View details for ${name}`}
                     >
                       <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
+                        <Text variant="bodyMd" fontWeight="bold" as="span">
+                          {name}
+                        </Text>
                       </h3>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
@@ -246,7 +257,9 @@ export function ThreeColumnsWithEqualWidth() {
         <Layout.Section oneThird>
           <Card title="Nevada" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">301 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                301 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -254,7 +267,7 @@ export function ThreeColumnsWithEqualWidth() {
                 items={[
                   {
                     id: '344',
-                    url: 'produdcts/344',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '100',
@@ -267,7 +280,7 @@ export function ThreeColumnsWithEqualWidth() {
                   },
                   {
                     id: '259',
-                    url: 'produdcts/259',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -290,7 +303,9 @@ export function ThreeColumnsWithEqualWidth() {
                       accessibilityLabel={`View details for ${name}`}
                     >
                       <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
+                        <Text variant="bodyMd" fontWeight="bold" as="span">
+                          {name}
+                        </Text>
                       </h3>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
@@ -304,7 +319,9 @@ export function ThreeColumnsWithEqualWidth() {
         <Layout.Section oneThird>
           <Card title="Minneapolis" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">1931 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                1931 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -312,7 +329,7 @@ export function ThreeColumnsWithEqualWidth() {
                 items={[
                   {
                     id: '345',
-                    url: 'produdcts/345',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '1230',
@@ -325,7 +342,7 @@ export function ThreeColumnsWithEqualWidth() {
                   },
                   {
                     id: '260',
-                    url: 'produdcts/260',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '701',
@@ -348,7 +365,9 @@ export function ThreeColumnsWithEqualWidth() {
                       accessibilityLabel={`View details for ${name}`}
                     >
                       <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
+                        <Text variant="bodyMd" fontWeight="bold" as="span">
+                          {name}
+                        </Text>
                       </h3>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>

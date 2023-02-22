@@ -9,7 +9,7 @@ import {
   Page,
   ResourceList,
   SettingToggle,
-  TextStyle,
+  Text,
 } from '@shopify/polaris';
 
 export default {
@@ -45,13 +45,13 @@ export function Default() {
             items={[
               {
                 id: 341,
-                url: 'customers/341',
+                url: '#',
                 name: 'Mae Jemison',
                 location: 'Decatur, USA',
               },
               {
                 id: 256,
-                url: 'customers/256',
+                url: '#',
                 name: 'Ellen Ochoa',
                 location: 'Los Angeles, USA',
               },
@@ -63,7 +63,9 @@ export function Default() {
               return (
                 <ResourceList.Item id={id} url={url} media={media}>
                   <h3>
-                    <TextStyle variation="strong">{name}</TextStyle>
+                    <Text variant="bodyMd" fontWeight="bold" as="span">
+                      {name}
+                    </Text>
                   </h3>
                   <div>{location}</div>
                 </ResourceList.Item>
@@ -103,13 +105,13 @@ export function WithI18n() {
             items={[
               {
                 id: 341,
-                url: 'customers/341',
+                url: '#',
                 name: 'Mae Jemison',
                 location: 'Decatur, USA',
               },
               {
                 id: 256,
-                url: 'customers/256',
+                url: '#',
                 name: 'Ellen Ochoa',
                 location: 'Los Angeles, USA',
               },
@@ -121,7 +123,9 @@ export function WithI18n() {
               return (
                 <ResourceList.Item id={id} url={url} media={media}>
                   <h3>
-                    <TextStyle variation="strong">{name}</TextStyle>
+                    <Text variant="bodyMd" fontWeight="bold" as="span">
+                      {name}
+                    </Text>
                   </h3>
                   <div>{location}</div>
                 </ResourceList.Item>

@@ -3,11 +3,12 @@ import React, {useContext} from 'react';
 import {classNames} from '../../utilities/css';
 import {WithinContentContext} from '../../utilities/within-content-context';
 import type {ComplexAction} from '../../types';
-import {Image} from '../Image';
+import {Box} from '../Box';
 import {buttonFrom} from '../Button';
-import {Stack} from '../Stack';
-import {TextContainer} from '../TextContainer';
-import {DisplayText} from '../DisplayText';
+import {Image} from '../Image';
+import {Text} from '../Text';
+import {AlphaStack} from '../AlphaStack';
+import {Inline} from '../Inline';
 
 import styles from './EmptyState.scss';
 
@@ -47,19 +48,16 @@ export function EmptyState({
   footerContent,
 }: EmptyStateProps) {
   const withinContentContainer = useContext(WithinContentContext);
-  const className = classNames(
-    styles.EmptyState,
-    fullWidth && styles.fullWidth,
+  const imageContainedClass = classNames(
     imageContained && styles.imageContained,
-    withinContentContainer && styles.withinContentContainer,
   );
 
   const imageMarkup = largeImage ? (
     <Image
       alt=""
       role="presentation"
-      className={styles.Image}
       source={largeImage}
+      className={imageContainedClass}
       sourceSet={[
         {source: image, descriptor: '568w'},
         {source: largeImage, descriptor: '1136w'},
@@ -67,7 +65,12 @@ export function EmptyState({
       sizes="(max-width: 568px) 60vw"
     />
   ) : (
-    <Image role="presentation" alt="" className={styles.Image} source={image} />
+    <Image
+      className={imageContainedClass}
+      role="presentation"
+      alt=""
+      source={image}
+    />
   );
 
   const secondaryActionMarkup = secondaryAction
@@ -75,62 +78,71 @@ export function EmptyState({
     : null;
 
   const footerContentMarkup = footerContent ? (
-    <div className={styles.FooterContent}>
-      <TextContainer>{footerContent}</TextContainer>
-    </div>
+    <Box paddingBlockStart="4">
+      <Text as="span" variant="bodyMd" color="subdued" alignment="center">
+        {footerContent}
+      </Text>
+    </Box>
   ) : null;
 
-  const headingSize = withinContentContainer ? 'small' : 'medium';
+  const headingSize = withinContentContainer ? 'headingLg' : 'headingXl';
 
   const primaryActionMarkup = action
     ? buttonFrom(action, {primary: true, size: 'medium'})
     : null;
 
   const headingMarkup = heading ? (
-    <DisplayText size={headingSize}>{heading}</DisplayText>
+    <Box paddingBlockEnd="4">
+      <Text variant={headingSize} as="p" alignment="center">
+        {heading}
+      </Text>
+    </Box>
   ) : null;
 
   const childrenMarkup = children ? (
-    <div className={styles.Content}>{children}</div>
+    <Text as="span" variant="bodyMd" color="subdued" alignment="center">
+      {children}
+    </Text>
   ) : null;
 
   const textContentMarkup =
     headingMarkup || children ? (
-      <TextContainer>
+      <Box paddingBlockEnd="6">
         {headingMarkup}
         {childrenMarkup}
-      </TextContainer>
+      </Box>
     ) : null;
 
   const actionsMarkup =
     primaryActionMarkup || secondaryActionMarkup ? (
-      <div className={styles.Actions}>
-        <Stack alignment="center" distribution="center" spacing="tight">
-          {secondaryActionMarkup}
-          {primaryActionMarkup}
-        </Stack>
-      </div>
+      <Inline align="center" gap="2">
+        {secondaryActionMarkup}
+        {primaryActionMarkup}
+      </Inline>
     ) : null;
 
   const detailsMarkup =
     textContentMarkup || actionsMarkup || footerContentMarkup ? (
-      <div className={styles.DetailsContainer}>
-        <div className={styles.Details}>
+      <Box maxWidth={fullWidth ? '100%' : '400px'}>
+        <AlphaStack align="center">
           {textContentMarkup}
           {actionsMarkup}
           {footerContentMarkup}
-        </div>
-      </div>
-    ) : (
-      <div className={styles.DetailsContainer} />
-    );
+        </AlphaStack>
+      </Box>
+    ) : null;
 
   return (
-    <div className={className}>
-      <div className={styles.Section}>
+    <Box
+      paddingInlineStart="0"
+      paddingInlineEnd="0"
+      paddingBlockStart="5"
+      paddingBlockEnd="16"
+    >
+      <AlphaStack align="center">
+        {imageMarkup}
         {detailsMarkup}
-        <div className={styles.ImageContainer}>{imageMarkup}</div>
-      </div>
-    </div>
+      </AlphaStack>
+    </Box>
   );
 }

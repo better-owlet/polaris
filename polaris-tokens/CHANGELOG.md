@@ -1,5 +1,73 @@
 # Changelog
 
+## 6.6.0
+
+### Minor Changes
+
+- [#8417](https://github.com/Shopify/polaris/pull/8417) [`48dffd03d`](https://github.com/Shopify/polaris/commit/48dffd03da4e4fd5ebbaf133725b01aecfa2d9b8) Thanks [@heyjoethomas](https://github.com/heyjoethomas)! - Added new magic tokens
+
+### Patch Changes
+
+- [#8428](https://github.com/Shopify/polaris/pull/8428) [`952ce97ea`](https://github.com/Shopify/polaris/commit/952ce97eacb675bd145ca049b41c91bf270e5954) Thanks [@aaronccasanova](https://github.com/aaronccasanova)! - Added `bg-app-active` and `text-primary-hover` `color` tokens
+
+* [#8427](https://github.com/Shopify/polaris/pull/8427) [`7c434b257`](https://github.com/Shopify/polaris/commit/7c434b257c308a6f80216c360faff6bfb7bb07c8) Thanks [@heyjoethomas](https://github.com/heyjoethomas)! - Fixed typo in `yellow-100` shade and lightened `blue-100` shade
+
+## 6.5.1
+
+### Patch Changes
+
+- [#8384](https://github.com/Shopify/polaris/pull/8384) [`7a9977b4d`](https://github.com/Shopify/polaris/commit/7a9977b4dfe29217279d4988a60cf056d8404419) Thanks [@aaronccasanova](https://github.com/aaronccasanova)! - Improved token group types and fixed typo in `color` alias types
+
+## 6.5.0
+
+### Minor Changes
+
+- [#8246](https://github.com/Shopify/polaris/pull/8246) [`60ef0dffc`](https://github.com/Shopify/polaris/commit/60ef0dffc9f6064d1d42793f5d2bd96f35b14489) Thanks [@aaronccasanova](https://github.com/aaronccasanova)! - Added a `color` token group using the new internal palette
+
+* [#8305](https://github.com/Shopify/polaris/pull/8305) [`4bff95206`](https://github.com/Shopify/polaris/commit/4bff95206877cc24c261f1103589464314ca8cb7) Thanks [@alex-page](https://github.com/alex-page)! - Created a new token --p-border-radius-full that replaces --p-border-radius-half
+
+## 6.4.0
+
+### Minor Changes
+
+- [#8245](https://github.com/Shopify/polaris/pull/8245) [`1b1394d32`](https://github.com/Shopify/polaris/commit/1b1394d32ecb122bcb77b6cb38b6106631ff8afd) Thanks [@lgriffee](https://github.com/lgriffee)! - Added new z-index tokens that will be the default in v7.0.0
+
+## 6.3.0
+
+### Minor Changes
+
+- [#7621](https://github.com/Shopify/polaris/pull/7621) [`6e9edd3b5`](https://github.com/Shopify/polaris/commit/6e9edd3b58875ced12d0f27772b825034d83bf6a) Thanks [@aveline](https://github.com/aveline)! - - Added border width prop to `Box`
+  - Exported color token subset alias types from tokens package and remove from `Box`
+
+## 6.2.1
+
+### Patch Changes
+
+- [#7385](https://github.com/Shopify/polaris/pull/7385) [`c3f427c17`](https://github.com/Shopify/polaris/commit/c3f427c17d268f406618aaddb684ba12c3fa15d1) Thanks [@laurkim](https://github.com/laurkim)! - Refactored exported alias and scale types in `breakpoints`, `depth`, `font`, `motion`, `shape`, `spacing`, and `zIndex`.
+
+## 6.2.0
+
+### Minor Changes
+
+- [#7056](https://github.com/Shopify/polaris/pull/7056) [`0be40aa94`](https://github.com/Shopify/polaris/commit/0be40aa94be8c95f96f0835b4df7f91f6da0b5c2) Thanks [@laurkim](https://github.com/laurkim)! - Refactored token types in primitive Layout components
+  Exposed `DepthShadowAlias` type
+
+## 6.1.0
+
+### Minor Changes
+
+- [#7274](https://github.com/Shopify/polaris/pull/7274) [`3fd9f6415`](https://github.com/Shopify/polaris/commit/3fd9f6415c0d7e3721eb7462c6777d4816437345) Thanks [@aaronccasanova](https://github.com/aaronccasanova)! - Exposed types for each token group including scale/alias unions for select token groups
+
+### Patch Changes
+
+- [#7239](https://github.com/Shopify/polaris/pull/7239) [`8626d6a1b`](https://github.com/Shopify/polaris/commit/8626d6a1b8a2ab50e6aa6074037144d11819734b) Thanks [@BPScott](https://github.com/BPScott)! - Increase `$p-breakpoint-*-{down,only}` breakpoint max-width values by 0.01px so that they are representable in fewer digits of precision when expressed as `em`s. This ensures they are representable without rounding when using `node-sass`'s default precision. E.g. `$p-breakpoints-md-down`changes from `max-width: 47.996875em` to `max-width: 47.9975em`.
+
+## 6.0.1
+
+### Patch Changes
+
+- [#7230](https://github.com/Shopify/polaris/pull/7230) [`a55193a8a`](https://github.com/Shopify/polaris/commit/a55193a8ad0de90a40de25b5d4909c1692861bc9) Thanks [@lgriffee](https://github.com/lgriffee)! - Add documentation on breakpoint token usage in media queries
+
 ## 6.0.0
 
 ### Major Changes

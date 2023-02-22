@@ -1,10 +1,4 @@
-import {
-  Card,
-  ResourceList,
-  Avatar,
-  ResourceItem,
-  TextStyle,
-} from '@shopify/polaris';
+import {Card, ResourceList, Avatar, ResourceItem, Text} from '@shopify/polaris';
 import React from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
 
@@ -16,17 +10,17 @@ function ResourceListExample() {
         items={[
           {
             id: 109,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
-            latestOrderUrl: 'orders/1456',
+            latestOrderUrl: '#',
           },
           {
             id: 209,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
-            latestOrderUrl: 'orders/1457',
+            latestOrderUrl: '#',
           },
         ]}
         renderItem={(item) => {
@@ -50,9 +44,9 @@ function ResourceListExample() {
               accessibilityLabel={`View details for ${name}`}
               shortcutActions={shortcutActions}
             >
-              <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
-              </h3>
+              <Text variant="bodyMd" fontWeight="bold" as="h3">
+                {name}
+              </Text>
               <div>{location}</div>
             </ResourceItem>
           );

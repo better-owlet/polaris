@@ -2,9 +2,9 @@ import {
   Page,
   Layout,
   Card,
-  TextStyle,
   ResourceList,
   Thumbnail,
+  Text,
 } from '@shopify/polaris';
 import React from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
@@ -16,7 +16,9 @@ function LayoutExample() {
         <Layout.Section oneThird>
           <Card title="Florida" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">455 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                455 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -24,7 +26,7 @@ function LayoutExample() {
                 items={[
                   {
                     id: 343,
-                    url: 'produdcts/343',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '254',
@@ -37,7 +39,7 @@ function LayoutExample() {
                   },
                   {
                     id: 258,
-                    url: 'produdcts/258',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -59,9 +61,9 @@ function LayoutExample() {
                       media={media}
                       accessibilityLabel={`View details for ${name}`}
                     >
-                      <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
-                      </h3>
+                      <Text variant="bodyMd" fontWeight="bold" as="h3">
+                        {name}
+                      </Text>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
                     </ResourceList.Item>
@@ -74,7 +76,9 @@ function LayoutExample() {
         <Layout.Section oneThird>
           <Card title="Nevada" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">301 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                301 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -82,7 +86,7 @@ function LayoutExample() {
                 items={[
                   {
                     id: 344,
-                    url: 'produdcts/344',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '100',
@@ -95,7 +99,7 @@ function LayoutExample() {
                   },
                   {
                     id: 259,
-                    url: 'produdcts/259',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '201',
@@ -117,9 +121,9 @@ function LayoutExample() {
                       media={media}
                       accessibilityLabel={`View details for ${name}`}
                     >
-                      <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
-                      </h3>
+                      <Text variant="bodyMd" fontWeight="bold" as="h3">
+                        {name}
+                      </Text>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
                     </ResourceList.Item>
@@ -132,7 +136,9 @@ function LayoutExample() {
         <Layout.Section oneThird>
           <Card title="Minneapolis" actions={[{content: 'Manage'}]}>
             <Card.Section>
-              <TextStyle variation="subdued">1931 units available</TextStyle>
+              <Text variant="bodyMd" color="subdued" as="span">
+                1931 units available
+              </Text>
             </Card.Section>
             <Card.Section title="Items">
               <ResourceList
@@ -140,7 +146,7 @@ function LayoutExample() {
                 items={[
                   {
                     id: 345,
-                    url: 'produdcts/345',
+                    url: '#',
                     name: 'Black & orange scarf',
                     sku: '9234194023',
                     quantity: '1230',
@@ -153,7 +159,7 @@ function LayoutExample() {
                   },
                   {
                     id: 260,
-                    url: 'produdcts/260',
+                    url: '#',
                     name: 'Tucan scarf',
                     sku: '9234194010',
                     quantity: '701',
@@ -175,9 +181,9 @@ function LayoutExample() {
                       media={media}
                       accessibilityLabel={`View details for ${name}`}
                     >
-                      <h3>
-                        <TextStyle variation="strong">{name}</TextStyle>
-                      </h3>
+                      <Text variant="bodyMd" fontWeight="bold" as="h3">
+                        {name}
+                      </Text>
                       <div>SKU: {sku}</div>
                       <div>{quantity} available</div>
                     </ResourceList.Item>

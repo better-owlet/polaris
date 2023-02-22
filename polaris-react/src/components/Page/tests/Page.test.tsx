@@ -58,7 +58,7 @@ describe('<Page />', () => {
   describe('subtitle', () => {
     it('gets passed into the <Header />', () => {
       const subtitle = 'Subtitle';
-      const page = mountWithApp(<Page {...mockProps} subtitle={subtitle} />);
+      const page = mountWithApp(<Page subtitle={subtitle} />);
       expect(page).toContainReactComponent(Header, {
         subtitle,
       });
@@ -242,6 +242,17 @@ describe('<Page />', () => {
     ];
 
     it('renders a <Header /> when defined', () => {
+      const page = mountWithApp(
+        <Page {...mockProps} breadcrumbs={breadcrumbs} />,
+      );
+      expect(page).toContainReactComponent(Header);
+    });
+
+    it('renders a <Header /> when defined not as an array', () => {
+      const breadcrumbs = {
+        content: 'Products',
+        onAction: noop,
+      };
       const page = mountWithApp(
         <Page {...mockProps} breadcrumbs={breadcrumbs} />,
       );

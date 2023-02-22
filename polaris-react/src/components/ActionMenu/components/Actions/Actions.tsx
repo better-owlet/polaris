@@ -1,18 +1,18 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
 
-import {debounce} from '../../../../utilities/debounce';
-import {useI18n} from '../../../../utilities/i18n';
 import type {
   ActionListItemDescriptor,
   ActionListSection,
   MenuActionDescriptor,
   MenuGroupDescriptor,
 } from '../../../../types';
-import {ButtonGroup} from '../../../ButtonGroup';
-// eslint-disable-next-line import/no-deprecated
-import {EventListener} from '../../../EventListener';
 import {MenuGroup} from '../MenuGroup';
+import {ButtonGroup} from '../../../ButtonGroup';
+import {debounce} from '../../../../utilities/debounce';
+import {useI18n} from '../../../../utilities/i18n';
 import {SecondaryAction} from '../SecondaryAction';
+import {useEventListener} from '../../../../utilities/use-event-listener';
+import {useIsomorphicLayoutEffect} from '../../../../utilities/use-isomorphic-layout-effect';
 
 import styles from './Actions.scss';
 
@@ -80,14 +80,20 @@ export function Actions({actions = [], groups = [], onActionRollup}: Props) {
         actionsAndGroups.length - 1,
       );
     }
-    const showable = actionsAndGroups.slice(0, measuredActions.showable.length);
-    const rolledUp = actionsAndGroups.slice(
-      measuredActions.showable.length,
-      actionsAndGroups.length,
-    );
 
-    setMeasuredActions({showable, rolledUp});
-  }, [actions, groups, measuredActions.showable.length]);
+    setMeasuredActions((currentMeasuredActions) => {
+      const showable = actionsAndGroups.slice(
+        0,
+        currentMeasuredActions.showable.length,
+      );
+      const rolledUp = actionsAndGroups.slice(
+        currentMeasuredActions.showable.length,
+        actionsAndGroups.length,
+      );
+
+      return {showable, rolledUp};
+    });
+  }, [actions, groups]);
 
   const measureActions = useCallback(() => {
     if (
@@ -164,12 +170,13 @@ export function Actions({actions = [], groups = [], onActionRollup}: Props) {
     [measureActions],
   );
 
-  useEffect(() => {
-    if (!actionsLayoutRef.current) {
-      return;
-    }
+  useEventListener('resize', handleResize);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!actionsLayoutRef.current) return;
 
     availableWidthRef.current = actionsLayoutRef.current.offsetWidth;
+
     if (
       // Allow measuring twice
       // This accounts for the initial paint and re-flow
@@ -314,7 +321,6 @@ export function Actions({actions = [], groups = [], onActionRollup}: Props) {
   return (
     <div className={styles.ActionsLayout} ref={actionsLayoutRef}>
       {groupedActionsMarkup}
-      <EventListener event="resize" handler={handleResize} />
     </div>
   );
 }

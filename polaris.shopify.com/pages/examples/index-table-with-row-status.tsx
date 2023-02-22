@@ -1,9 +1,4 @@
-import {
-  IndexTable,
-  TextStyle,
-  Card,
-  useIndexResourceState,
-} from '@shopify/polaris';
+import {IndexTable, Card, useIndexResourceState, Text} from '@shopify/polaris';
 import React from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
 
@@ -11,7 +6,7 @@ function IndexTableWithRowStatusExample() {
   const customers = [
     {
       id: '3411',
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
       orders: 20,
@@ -20,7 +15,7 @@ function IndexTableWithRowStatusExample() {
     },
     {
       id: '2561',
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
       orders: 30,
@@ -46,7 +41,9 @@ function IndexTableWithRowStatusExample() {
         status={status}
       >
         <IndexTable.Cell>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </IndexTable.Cell>
         <IndexTable.Cell>{location}</IndexTable.Cell>
         <IndexTable.Cell>{orders}</IndexTable.Cell>

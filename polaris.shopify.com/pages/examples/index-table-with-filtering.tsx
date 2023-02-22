@@ -1,11 +1,11 @@
 import {
   TextField,
   IndexTable,
-  TextStyle,
   Card,
   Filters,
   Select,
   useIndexResourceState,
+  Text,
 } from '@shopify/polaris';
 import {useState, useCallback} from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
@@ -14,7 +14,7 @@ function IndexTableWithFilteringExample() {
   const customers = [
     {
       id: '3416',
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
       orders: 20,
@@ -22,7 +22,7 @@ function IndexTableWithFilteringExample() {
     },
     {
       id: '2566',
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
       orders: 30,
@@ -94,7 +94,9 @@ function IndexTableWithFilteringExample() {
         position={index}
       >
         <IndexTable.Cell>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </IndexTable.Cell>
         <IndexTable.Cell>{location}</IndexTable.Cell>
         <IndexTable.Cell>{orders}</IndexTable.Cell>

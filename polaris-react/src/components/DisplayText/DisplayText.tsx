@@ -22,6 +22,13 @@ export interface DisplayTextProps {
   children?: React.ReactNode;
 }
 
+/**
+ * @deprecated The DisplayText component will be removed in the next
+ * major version. Use the Text component instead. See the
+ * Polaris component guide on how to use Text.
+ *
+ * https://polaris.shopify.com/components/text
+ */
 export function DisplayText({
   element: Element = 'p',
   children,

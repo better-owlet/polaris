@@ -9,12 +9,13 @@ import {Popover} from '../../Popover';
 import {Sheet} from '../../Sheet';
 import {Tag} from '../../Tag';
 import {TextField} from '../../TextField';
-import {TextStyle} from '../../TextStyle';
+import {Text} from '../../Text';
 import {WithinFilterContext} from '../../../utilities/within-filter-context';
 import {Filters, FiltersProps} from '../Filters';
 import {ConnectedFilterControl, TagsWrapper} from '../components';
 import * as focusUtils from '../../../utilities/focus';
 import styles from '../Filters.scss';
+import {Focus} from '../../Focus';
 
 const MockFilter = (props: {id: string}) => <div id={props.id} />;
 const MockChild = () => <div />;
@@ -640,8 +641,8 @@ describe('<Filters />', () => {
           id: `${filter.key}ToggleButton`,
         });
 
-        expect(toggleButton!).toContainReactComponent(TextStyle, {
-          variation: 'subdued',
+        expect(toggleButton!).toContainReactComponent(Text, {
+          color: 'subdued',
         });
       });
     });
@@ -673,8 +674,8 @@ describe('<Filters />', () => {
               id: `${filter.key}ToggleButton`,
             });
 
-            expect(toggleButton).toContainReactComponent(TextStyle, {
-              variation: 'subdued',
+            expect(toggleButton).toContainReactComponent(Text, {
+              color: 'subdued',
             });
           });
       });
@@ -693,8 +694,8 @@ describe('<Filters />', () => {
               id: `${filter.key}ToggleButton`,
             });
 
-            expect(toggleButton).toContainReactComponent(TextStyle, {
-              variation: undefined,
+            expect(toggleButton).toContainReactComponent(Text, {
+              color: undefined,
             });
           });
       });
@@ -702,7 +703,7 @@ describe('<Filters />', () => {
   });
 
   describe('helpText', () => {
-    it('renders a subdued <TextStyle /> when provided', () => {
+    it('renders a subdued <Text /> when provided', () => {
       const helpText = 'Important filters information';
       const resourceFilters = mountWithApp(
         <Filters {...mockProps} helpText={helpText} />,
@@ -712,7 +713,7 @@ describe('<Filters />', () => {
         id: 'FiltersHelpText',
       });
       expect(helpTextMarkup).toHaveLength(1);
-      expect(helpTextMarkup[0]).toContainReactComponent(TextStyle, {
+      expect(helpTextMarkup[0]).toContainReactComponent(Text, {
         children: helpText,
       });
     });
@@ -722,6 +723,52 @@ describe('<Filters />', () => {
 
       expect(resourceFilters).not.toContainReactComponent('div', {
         id: 'FiltersHelpText',
+      });
+    });
+  });
+
+  describe('readyForFocus', () => {
+    it('unfocuses the filter when a filter is toggled', () => {
+      const resourceFilters = mountWithApp(<Filters {...mockProps} />);
+
+      resourceFilters
+        .find(Button, {children: 'More filters'})!
+        .trigger('onClick');
+
+      resourceFilters
+        .find('button', {id: 'filterOneToggleButton'})!
+        .trigger('onClick');
+
+      expect(
+        resourceFilters.find(Collapsible, {id: 'filterOneCollapsible'})!,
+      ).toContainReactComponent(Focus, {
+        disabled: true,
+      });
+    });
+
+    it('focuses the filter when Collapsible is opened', () => {
+      const resourceFilters = mountWithApp(<Filters {...mockProps} />);
+
+      resourceFilters
+        .find(Button, {children: 'More filters'})!
+        .trigger('onClick');
+
+      resourceFilters
+        .find('button', {id: 'filterOneToggleButton'})!
+        .trigger('onClick');
+
+      expect(
+        resourceFilters.find(Collapsible, {id: 'filterOneCollapsible'})!,
+      ).toContainReactComponent(Focus, {
+        disabled: true,
+      });
+
+      resourceFilters.find(Collapsible)!.trigger('onAnimationEnd');
+
+      expect(
+        resourceFilters.find(Collapsible, {id: 'filterOneCollapsible'})!,
+      ).toContainReactComponent(Focus, {
+        disabled: false,
       });
     });
   });

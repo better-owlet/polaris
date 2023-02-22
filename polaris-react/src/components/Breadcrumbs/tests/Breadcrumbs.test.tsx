@@ -3,7 +3,7 @@ import {mountWithApp} from 'tests/utilities';
 
 import type {CallbackAction, LinkAction} from '../../../types';
 import {Breadcrumbs} from '../Breadcrumbs';
-import {VisuallyHidden} from '../../VisuallyHidden';
+import {Text} from '../../Text';
 
 describe('<Breadcrumbs />', () => {
   describe('url', () => {
@@ -103,9 +103,20 @@ describe('<Breadcrumbs />', () => {
   it('renders breadcrumb content as a visually hidden label when the new design language is enabled', () => {
     const wrapper = mountWithApp(<Breadcrumbs breadcrumbs={linkBreadcrumbs} />);
 
-    expect(wrapper).toContainReactComponent(VisuallyHidden, {
+    expect(wrapper).toContainReactComponent(Text, {
       children: 'Products',
+      visuallyHidden: true,
     });
+  });
+
+  it('renders when not passed an array', () => {
+    const breadcrumb: LinkAction = {
+      content: 'Products',
+      url: 'https://www.shopify.com',
+    };
+    const wrapper = mountWithApp(<Breadcrumbs breadcrumbs={breadcrumb} />);
+
+    expect(wrapper.html()).not.toBe('');
   });
 
   it('renders nothing when empty', () => {

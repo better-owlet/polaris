@@ -11,7 +11,7 @@ import {
   Popover,
   ResourceList,
   Stack,
-  Subheading,
+  Text,
   TextContainer,
 } from '@shopify/polaris';
 import {ProductsMajor} from '@shopify/polaris-icons';
@@ -280,7 +280,9 @@ export function WithCustomReactNodeTitle() {
         title={
           <Stack>
             <Icon source={ProductsMajor} />
-            <Subheading>New Products</Subheading>
+            <Text variant="headingSm" as="h3">
+              New Products
+            </Text>
           </Stack>
         }
       >
@@ -335,12 +337,12 @@ export function WithAllElements() {
             {
               sales: 'Orders',
               amount: 'USD$0.00',
-              url: 'reports/orders',
+              url: '#',
             },
             {
               sales: 'Returns',
               amount: '-USD$250.00',
-              url: 'reports/returns',
+              url: '#',
             },
           ]}
           renderItem={(item) => {

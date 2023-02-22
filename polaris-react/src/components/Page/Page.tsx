@@ -33,13 +33,17 @@ export function Page({
 
   const hasHeaderContent =
     (rest.title != null && rest.title !== '') ||
+    (rest.subtitle != null && rest.subtitle !== '') ||
     rest.primaryAction != null ||
     (rest.secondaryActions != null &&
       ((isInterface(rest.secondaryActions) &&
         rest.secondaryActions.length > 0) ||
         isReactElement(rest.secondaryActions))) ||
     (rest.actionGroups != null && rest.actionGroups.length > 0) ||
-    (rest.breadcrumbs != null && rest.breadcrumbs.length > 0);
+    (rest.breadcrumbs != null &&
+      Array.isArray(rest.breadcrumbs) &&
+      rest.breadcrumbs.length > 0) ||
+    rest.breadcrumbs != null;
 
   const contentClassName = classNames(
     !hasHeaderContent && styles.Content,

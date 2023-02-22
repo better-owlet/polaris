@@ -1,9 +1,9 @@
 import {
   IndexTable,
-  TextStyle,
   Card,
   Link,
   useIndexResourceState,
+  Text,
 } from '@shopify/polaris';
 import React from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
@@ -12,7 +12,7 @@ function ClickThroughLinkIndexTableExample() {
   const customers = [
     {
       id: '3411',
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
       orders: 20,
@@ -20,7 +20,7 @@ function ClickThroughLinkIndexTableExample() {
     },
     {
       id: '2561',
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
       orders: 30,
@@ -49,7 +49,9 @@ function ClickThroughLinkIndexTableExample() {
             url={url}
             onClick={() => console.log(`Clicked ${name}`)}
           >
-            <TextStyle variation="strong">{name}</TextStyle>
+            <Text variant="bodyMd" fontWeight="bold" as="span">
+              {name}
+            </Text>
           </Link>
         </IndexTable.Cell>
         <IndexTable.Cell>{location}</IndexTable.Cell>

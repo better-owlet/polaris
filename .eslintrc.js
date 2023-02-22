@@ -78,13 +78,40 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'react',
+            importNames: ['useLayoutEffect'],
+            message:
+              'Please use useIsomorphicLayoutEffect from the utilities directory instead',
+          },
+        ],
+      },
+    ],
   },
   overrides: [
     ...packages.map((packageDir) => noExtraneousDependenciesConfig(packageDir)),
     {
-      files: ['polaris-for-figma/src/**/*.{ts,tsx}'],
+      files: ['polaris-cli/src/**/*.{ts,tsx}'],
       rules: {
+        'import/no-default-export': 'off',
+      },
+    },
+    {
+      files: ['polaris-migrator/src/**/*.{ts,tsx}'],
+      rules: {
+        'import/no-default-export': 'off',
+      },
+    },
+    {
+      files: ['polaris-migrator/src/**/tests/*.{ts,tsx}'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
         '@shopify/jsx-no-hardcoded-content': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
       },
     },
     {

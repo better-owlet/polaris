@@ -76,6 +76,13 @@ export interface PopoverProps {
    * @default 'container'
    */
   autofocusTarget?: PopoverAutofocusTarget;
+  /** Prevents closing the popover when other overlays are clicked */
+  preventCloseOnChildOverlayClick?: boolean;
+  /**
+   * Prevents page scrolling when the end of the scrollable Popover overlay content is reached - applied to Pane subcomponent
+   * @default false
+   */
+  captureOverscroll?: boolean;
 }
 
 export interface PopoverPublicAPI {
@@ -152,17 +159,27 @@ const PopoverComponent = forwardRef<PopoverPublicAPI, PopoverProps>(
         return;
       }
 
-      if (
-        (source === PopoverCloseSource.FocusOut ||
-          source === PopoverCloseSource.EscapeKeypress) &&
-        activatorNode
-      ) {
+      if (source === PopoverCloseSource.FocusOut && activatorNode) {
         const focusableActivator =
           findFirstFocusableNodeIncludingDisabled(activatorNode) ||
           findFirstFocusableNodeIncludingDisabled(activatorContainer.current) ||
           activatorContainer.current;
         if (!focusNextFocusableNode(focusableActivator, isInPortal)) {
           focusableActivator.focus();
+        }
+      } else if (
+        source === PopoverCloseSource.EscapeKeypress &&
+        activatorNode
+      ) {
+        const focusableActivator =
+          findFirstFocusableNodeIncludingDisabled(activatorNode) ||
+          findFirstFocusableNodeIncludingDisabled(activatorContainer.current) ||
+          activatorContainer.current;
+
+        if (focusableActivator) {
+          focusableActivator.focus();
+        } else {
+          focusNextFocusableNode(focusableActivator, isInPortal);
         }
       }
     };

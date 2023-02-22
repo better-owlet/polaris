@@ -7,6 +7,7 @@ import {useUniqueId} from '../../../../utilities/unique-id';
 import {useToggle} from '../../../../utilities/use-toggle';
 import {Collapsible} from '../../../Collapsible';
 import {Icon, IconProps} from '../../../Icon';
+import {Text} from '../../../Text';
 import {Item, ItemProps} from '../Item';
 import styles from '../../Navigation.scss';
 import {Tooltip, TooltipProps} from '../../../Tooltip';
@@ -100,7 +101,9 @@ export function Section({
 
   const sectionHeadingMarkup = title && (
     <li className={styles.SectionHeading}>
-      <span className={styles.Text}>{title}</span>
+      <Text as="span" variant="headingXs" color="subdued">
+        {title}
+      </Text>
       {actionMarkup}
     </li>
   );
@@ -136,16 +139,20 @@ export function Section({
 
   const toggleRollup = rollup && items.length > rollup.after && (
     <div className={styles.ListItem} key="List Item">
-      <button
-        type="button"
-        className={toggleClassName}
-        onClick={toggleExpanded}
-        aria-label={ariaLabel}
-      >
-        <span className={styles.Icon}>
-          <Icon source={HorizontalDotsMinor} />
-        </span>
-      </button>
+      <div className={styles.ItemWrapper}>
+        <div className={styles.ItemInnerWrapper}>
+          <button
+            type="button"
+            className={toggleClassName}
+            onClick={toggleExpanded}
+            aria-label={ariaLabel}
+          >
+            <span className={styles.Icon}>
+              <Icon source={HorizontalDotsMinor} />
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 

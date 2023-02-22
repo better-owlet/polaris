@@ -1,10 +1,4 @@
-import {
-  Card,
-  ResourceList,
-  Avatar,
-  ResourceItem,
-  TextStyle,
-} from '@shopify/polaris';
+import {Card, ResourceList, Avatar, ResourceItem, Text} from '@shopify/polaris';
 import React from 'react';
 import {withPolarisExample} from '../../src/components/PolarisExampleWrapper';
 
@@ -16,13 +10,13 @@ function ResourceListWithTotalItemsCount() {
         items={[
           {
             id: 105,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
           },
           {
             id: 205,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
           },
@@ -38,9 +32,9 @@ function ResourceListWithTotalItemsCount() {
               media={media}
               accessibilityLabel={`View details for ${name}`}
             >
-              <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
-              </h3>
+              <Text variant="bodyMd" fontWeight="bold" as="h3">
+                {name}
+              </Text>
               <div>{location}</div>
             </ResourceItem>
           );

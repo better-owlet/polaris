@@ -11,7 +11,7 @@ import {
   ResourceItem,
   ResourceList,
   TextField,
-  TextStyle,
+  Text,
 } from '@shopify/polaris';
 
 export default {
@@ -26,13 +26,13 @@ export function Default() {
         items={[
           {
             id: 100,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
           },
           {
             id: 200,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
           },
@@ -49,7 +49,9 @@ export function Default() {
               accessibilityLabel={`View details for ${name}`}
             >
               <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
+                <Text variant="bodyMd" fontWeight="bold" as="span">
+                  {name}
+                </Text>
               </h3>
               <div>{location}</div>
             </ResourceItem>
@@ -118,13 +120,13 @@ export function WithSelectionAndNoBulkActions() {
   const items = [
     {
       id: 101,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 201,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -155,7 +157,9 @@ export function WithSelectionAndNoBulkActions() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -174,13 +178,13 @@ export function WithBulkActions() {
   const items = [
     {
       id: 103,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 203,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -234,7 +238,86 @@ export function WithBulkActions() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
+        </h3>
+        <div>{location}</div>
+      </ResourceItem>
+    );
+  }
+}
+
+export function WithBulkActionsAndManyItems() {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const resourceName = {
+    singular: 'customer',
+    plural: 'customers',
+  };
+
+  const items = Array.from({length: 50}, (_, num) => {
+    return {
+      id: `${num}`,
+      url: '#',
+      name: 'Mae Jemison',
+      location: 'Decatur, USA',
+      orders: 20,
+      amountSpent: '$24,00',
+    };
+  });
+
+  const promotedBulkActions = [
+    {
+      content: 'Edit customers',
+      onAction: () => console.log('Todo: implement bulk edit'),
+    },
+  ];
+
+  const bulkActions = [
+    {
+      content: 'Add tags',
+      onAction: () => console.log('Todo: implement bulk add tags'),
+    },
+    {
+      content: 'Remove tags',
+      onAction: () => console.log('Todo: implement bulk remove tags'),
+    },
+    {
+      content: 'Delete customers',
+      onAction: () => console.log('Todo: implement bulk delete'),
+    },
+  ];
+
+  return (
+    <Card>
+      <ResourceList
+        resourceName={resourceName}
+        items={items}
+        renderItem={renderItem}
+        selectedItems={selectedItems}
+        onSelectionChange={setSelectedItems}
+        promotedBulkActions={promotedBulkActions}
+        bulkActions={bulkActions}
+      />
+    </Card>
+  );
+
+  function renderItem(item) {
+    const {id, url, name, location} = item;
+    const media = <Avatar customer size="medium" name={name} />;
+
+    return (
+      <ResourceItem
+        id={id}
+        url={url}
+        media={media}
+        accessibilityLabel={`View details for ${name}`}
+      >
+        <h3>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -253,13 +336,13 @@ export function WithLoadingState() {
   const items = [
     {
       id: 104,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 204,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -314,7 +397,9 @@ export function WithLoadingState() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -330,13 +415,13 @@ export function WithTotalCount() {
         items={[
           {
             id: 105,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
           },
           {
             id: 205,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
           },
@@ -353,7 +438,9 @@ export function WithTotalCount() {
               accessibilityLabel={`View details for ${name}`}
             >
               <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
+                <Text variant="bodyMd" fontWeight="bold" as="span">
+                  {name}
+                </Text>
               </h3>
               <div>{location}</div>
             </ResourceItem>
@@ -361,6 +448,51 @@ export function WithTotalCount() {
         }}
         showHeader
         totalItemsCount={50}
+      />
+    </Card>
+  );
+}
+
+export function WithHeaderContent() {
+  return (
+    <Card>
+      <ResourceList
+        headerContent="Customer details shown below"
+        items={[
+          {
+            id: 105,
+            url: '#',
+            name: 'Mae Jemison',
+            location: 'Decatur, USA',
+          },
+          {
+            id: 205,
+            url: '#',
+            name: 'Ellen Ochoa',
+            location: 'Los Angeles, USA',
+          },
+        ]}
+        renderItem={(item) => {
+          const {id, url, name, location} = item;
+          const media = <Avatar customer size="medium" name={name} />;
+
+          return (
+            <ResourceItem
+              id={id}
+              url={url}
+              media={media}
+              accessibilityLabel={`View details for ${name}`}
+            >
+              <h3>
+                <Text variant="bodyMd" fontWeight="bold" as="span">
+                  {name}
+                </Text>
+              </h3>
+              <div>{location}</div>
+            </ResourceItem>
+          );
+        }}
+        showHeader
       />
     </Card>
   );
@@ -377,13 +509,13 @@ export function WithSorting() {
   const items = [
     {
       id: 106,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 206,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -420,7 +552,9 @@ export function WithSorting() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -437,13 +571,13 @@ export function WithAlternateTool() {
   const items = [
     {
       id: 107,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 207,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -472,7 +606,9 @@ export function WithAlternateTool() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -503,13 +639,13 @@ export function WithFiltering() {
   const items = [
     {
       id: 108,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 208,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
@@ -575,7 +711,9 @@ export function WithFiltering() {
     return (
       <ResourceItem id={id} url={url} media={media}>
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -686,7 +824,9 @@ export function WithACustomEmptySearchResultState() {
     return (
       <ResourceItem id={id} url={url} media={media}>
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -719,17 +859,17 @@ export function WithItemShortcutActions() {
         items={[
           {
             id: 109,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
-            latestOrderUrl: 'orders/1456',
+            latestOrderUrl: '#',
           },
           {
             id: 209,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
-            latestOrderUrl: 'orders/1457',
+            latestOrderUrl: '#',
           },
         ]}
         renderItem={(item) => {
@@ -754,7 +894,9 @@ export function WithItemShortcutActions() {
               shortcutActions={shortcutActions}
             >
               <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
+                <Text variant="bodyMd" fontWeight="bold" as="span">
+                  {name}
+                </Text>
               </h3>
               <div>{location}</div>
             </ResourceItem>
@@ -773,17 +915,17 @@ export function WithPersistentItemShortcutActions() {
         items={[
           {
             id: 110,
-            url: 'customers/341',
+            url: '#',
             name: 'Mae Jemison',
             location: 'Decatur, USA',
-            latestOrderUrl: 'orders/1456',
+            latestOrderUrl: '#',
           },
           {
             id: 210,
-            url: 'customers/256',
+            url: '#',
             name: 'Ellen Ochoa',
             location: 'Los Angeles, USA',
-            latestOrderUrl: 'orders/1457',
+            latestOrderUrl: '#',
           },
         ]}
         renderItem={(item) => {
@@ -809,7 +951,9 @@ export function WithPersistentItemShortcutActions() {
               persistActions
             >
               <h3>
-                <TextStyle variation="strong">{name}</TextStyle>
+                <Text variant="bodyMd" fontWeight="bold" as="span">
+                  {name}
+                </Text>
               </h3>
               <div>{location}</div>
             </ResourceItem>
@@ -831,37 +975,37 @@ export function WithMultiselect() {
   const items = [
     {
       id: 111,
-      url: 'customers/231',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
     },
     {
       id: 211,
-      url: 'customers/246',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
     },
     {
       id: 311,
-      url: 'customers/276',
+      url: '#',
       name: 'Joe Smith',
       location: 'Arizona, USA',
     },
     {
       id: 411,
-      url: 'customers/349',
+      url: '#',
       name: 'Haden Jerado',
       location: 'Decatur, USA',
     },
     {
       id: 511,
-      url: 'customers/419',
+      url: '#',
       name: 'Tom Thommas',
       location: 'Florida, USA',
     },
     {
       id: 611,
-      url: 'customers/516',
+      url: '#',
       name: 'Emily Amrak',
       location: 'Texas, USA',
     },
@@ -917,7 +1061,9 @@ export function WithMultiselect() {
         accessibilityLabel={`View details for ${name}`}
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>
@@ -958,17 +1104,17 @@ export function WithAllOfItsElements() {
   const items = [
     {
       id: 112,
-      url: 'customers/341',
+      url: '#',
       name: 'Mae Jemison',
       location: 'Decatur, USA',
-      latestOrderUrl: 'orders/1456',
+      latestOrderUrl: '#',
     },
     {
       id: 212,
-      url: 'customers/256',
+      url: '#',
       name: 'Ellen Ochoa',
       location: 'Los Angeles, USA',
-      latestOrderUrl: 'orders/1457',
+      latestOrderUrl: '#',
     },
   ];
 
@@ -1076,7 +1222,9 @@ export function WithAllOfItsElements() {
         persistActions
       >
         <h3>
-          <TextStyle variation="strong">{name}</TextStyle>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {name}
+          </Text>
         </h3>
         <div>{location}</div>
       </ResourceItem>

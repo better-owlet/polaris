@@ -9,9 +9,11 @@ import {isSection} from '../../utilities/options';
 import {arraysAreEqual} from '../../utilities/arrays';
 import {useUniqueId} from '../../utilities/unique-id';
 import {useDeepEffect} from '../../utilities/use-deep-effect';
+import {Box, BoxProps} from '../Box';
+import {Text} from '../Text';
+import {Bleed} from '../Bleed';
 
 import {Option} from './components';
-import styles from './OptionList.scss';
 
 type Alignment = 'top' | 'center' | 'bottom';
 
@@ -90,8 +92,19 @@ export function OptionList({
 
   const optionsMarkup = optionsExist
     ? normalizedOptions.map(({title, options}, sectionIndex) => {
+        const isFirstOption = sectionIndex === 0;
         const titleMarkup = title ? (
-          <p className={styles.Title}>{title}</p>
+          <Box
+            paddingBlockStart={isFirstOption ? '2' : '4'}
+            paddingInlineStart="2"
+            paddingBlockEnd="2"
+            paddingInlineEnd="2"
+            borderBlockStart={!isFirstOption ? 'divider' : undefined}
+          >
+            <Text as="p" variant="headingXs">
+              {title}
+            </Text>
+          </Box>
         ) : null;
         const optionsMarkup =
           options &&
@@ -117,24 +130,30 @@ export function OptionList({
           });
 
         return (
-          <li key={title || `noTitle-${sectionIndex}`}>
+          <Box
+            key={title || `noTitle-${sectionIndex}`}
+            as="li"
+            paddingBlockStart={isFirstOption ? undefined : '2'}
+          >
             {titleMarkup}
-            <ul
-              className={styles.Options}
-              id={`${id}-${sectionIndex}`}
-              role={role}
-            >
-              {optionsMarkup}
-            </ul>
-          </li>
+            <Bleed marginBlockStart={title ? undefined : '05'} marginInline="0">
+              <Box
+                as="ul"
+                id={`${id}-${sectionIndex}`}
+                role={role as BoxProps['role']}
+              >
+                {optionsMarkup}
+              </Box>
+            </Bleed>
+          </Box>
         );
       })
     : null;
 
   return (
-    <ul className={styles.OptionList} role={role}>
+    <Box as="ul" role={role as BoxProps['role']} padding="2">
       {optionsMarkup}
-    </ul>
+    </Box>
   );
 }
 

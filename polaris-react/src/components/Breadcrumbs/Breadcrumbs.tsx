@@ -5,17 +5,19 @@ import {Icon} from '../Icon';
 import {UnstyledLink} from '../UnstyledLink';
 import type {CallbackAction, LinkAction} from '../../types';
 import {handleMouseUpByBlurring} from '../../utilities/focus';
-import {VisuallyHidden} from '../VisuallyHidden';
+import {Text} from '../Text';
 
 import styles from './Breadcrumbs.scss';
 
 export interface BreadcrumbsProps {
   /** Collection of breadcrumbs */
-  breadcrumbs: (CallbackAction | LinkAction)[];
+  breadcrumbs: (CallbackAction | LinkAction) | (CallbackAction | LinkAction)[];
 }
 
 export function Breadcrumbs({breadcrumbs}: BreadcrumbsProps) {
-  const breadcrumb = breadcrumbs[breadcrumbs.length - 1];
+  const breadcrumb = Array.isArray(breadcrumbs)
+    ? breadcrumbs[breadcrumbs.length - 1]
+    : breadcrumbs;
   if (breadcrumb == null) {
     return null;
   }
@@ -27,7 +29,9 @@ export function Breadcrumbs({breadcrumbs}: BreadcrumbsProps) {
       <span className={styles.Icon}>
         <Icon source={ArrowLeftMinor} />
       </span>
-      <VisuallyHidden>{content}</VisuallyHidden>
+      <Text variant="bodySm" as="span" visuallyHidden color="subdued">
+        {content}
+      </Text>
     </>
   );
 

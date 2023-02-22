@@ -3,12 +3,12 @@ import React from 'react';
 import type {Action} from '../../types';
 import {Avatar} from '../Avatar';
 import {buttonFrom} from '../Button';
-import {Card} from '../Card';
-import {Stack} from '../Stack';
-import {TextStyle} from '../TextStyle';
 import {SettingAction} from '../SettingAction';
-
-import styles from './AccountConnection.scss';
+import {AlphaCard} from '../AlphaCard';
+import {Box} from '../Box';
+import {Inline} from '../Inline';
+import {Text} from '../Text';
+import {AlphaStack} from '../AlphaStack';
 
 export interface AccountConnectionProps {
   /** Content to display as title */
@@ -52,21 +52,16 @@ export function AccountConnection({
     />
   ) : null;
 
-  let titleMarkup: React.ReactNode = null;
-  if (title) {
-    titleMarkup = <div>{title}</div>;
-  } else if (accountName) {
-    titleMarkup = <div>{accountName}</div>;
-  }
+  const titleMarkup = title ? title : accountName;
 
   const detailsMarkup = details ? (
-    <div>
-      <TextStyle variation="subdued">{details}</TextStyle>
-    </div>
+    <Text as="span" variant="bodyMd" color="subdued">
+      {details}
+    </Text>
   ) : null;
 
   const termsOfServiceMarkup = termsOfService ? (
-    <div className={styles.TermsOfService}>{termsOfService}</div>
+    <Box paddingBlockStart="5">{termsOfService}</Box>
   ) : null;
 
   const actionElement = action
@@ -74,19 +69,17 @@ export function AccountConnection({
     : null;
 
   return (
-    <Card sectioned>
+    <AlphaCard>
       <SettingAction action={actionElement}>
-        <Stack>
+        <Inline gap="4">
           {avatarMarkup}
-          <Stack.Item fill>
-            <div className={styles.Content}>
-              {titleMarkup}
-              {detailsMarkup}
-            </div>
-          </Stack.Item>
-        </Stack>
+          <AlphaStack gap="2">
+            {titleMarkup}
+            {detailsMarkup}
+          </AlphaStack>
+        </Inline>
       </SettingAction>
       {termsOfServiceMarkup}
-    </Card>
+    </AlphaCard>
   );
 }

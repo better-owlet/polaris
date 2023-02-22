@@ -10,7 +10,7 @@ import {
   RangeSlider,
   ResourceList,
   TextField,
-  TextStyle,
+  Text,
 } from '@shopify/polaris';
 
 export default {
@@ -165,13 +165,13 @@ export function WithAResourceList() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -187,9 +187,9 @@ export function WithAResourceList() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -476,13 +476,13 @@ export function WithChildrenContent() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -498,9 +498,9 @@ export function WithChildrenContent() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -603,13 +603,13 @@ export function Disabled() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -625,9 +625,9 @@ export function Disabled() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -749,13 +749,13 @@ export function SomeDisabled() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -771,9 +771,9 @@ export function SomeDisabled() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -877,13 +877,13 @@ export function WithoutClearButton() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -899,9 +899,9 @@ export function WithoutClearButton() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -1070,13 +1070,13 @@ export function WithHelpText() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -1092,9 +1092,9 @@ export function WithHelpText() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -1266,13 +1266,13 @@ export function WithQueryFieldHidden() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -1288,9 +1288,9 @@ export function WithQueryFieldHidden() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
@@ -1462,13 +1462,13 @@ export function WithQueryFieldDisabled() {
           items={[
             {
               id: 341,
-              url: 'customers/341',
+              url: '#',
               name: 'Mae Jemison',
               location: 'Decatur, USA',
             },
             {
               id: 256,
-              url: 'customers/256',
+              url: '#',
               name: 'Ellen Ochoa',
               location: 'Los Angeles, USA',
             },
@@ -1484,9 +1484,9 @@ export function WithQueryFieldDisabled() {
                 media={media}
                 accessibilityLabel={`View details for ${name}`}
               >
-                <h3>
-                  <TextStyle variation="strong">{name}</TextStyle>
-                </h3>
+                <Text as="h3" variant="bodyMd" fontWeight="bold">
+                  {name}
+                </Text>
                 <div>{location}</div>
               </ResourceList.Item>
             );
